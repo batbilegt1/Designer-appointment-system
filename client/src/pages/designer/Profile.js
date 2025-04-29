@@ -75,7 +75,7 @@ const Profile = () => {
   }, []);
   return (
     <Layout>
-      <h1>Manage Profile</h1>
+      <h1>Профайл өөрчлөх</h1>
       {designer && (
         <Form
           layout="vertical"
@@ -89,11 +89,11 @@ const Profile = () => {
             ],
           }}
         >
-          <h4 className="">Personal Details : </h4>
+          <h4 className="">Хувийн мэдээлэл : </h4>
           <Row gutter={20}>
             <Col xs={24} md={24} lg={8}>
               <Form.Item
-                label="First Name"
+                label="Овог"
                 name="firstName"
                 required
                 rules={[{ required: true }]}
@@ -103,7 +103,7 @@ const Profile = () => {
             </Col>
             <Col xs={24} md={24} lg={8}>
               <Form.Item
-                label="Last Name"
+                label="Нэр"
                 name="lastName"
                 required
                 rules={[{ required: true }]}
@@ -113,7 +113,7 @@ const Profile = () => {
             </Col>
             <Col xs={24} md={24} lg={8}>
               <Form.Item
-                label="Phone No"
+                label="Утасны дугаар"
                 name="phone"
                 required
                 rules={[{ required: true }]}
@@ -123,7 +123,7 @@ const Profile = () => {
             </Col>
             <Col xs={24} md={24} lg={8}>
               <Form.Item
-                label="Email"
+                label="И-мэйл хаяг"
                 name="email"
                 required
                 rules={[{ required: true }]}
@@ -132,13 +132,13 @@ const Profile = () => {
               </Form.Item>
             </Col>
             <Col xs={24} md={24} lg={8}>
-              <Form.Item label="Website" name="website">
+              <Form.Item label="Сошиал хаяг" name="website">
                 <Input type="text" placeholder="your website" />
               </Form.Item>
             </Col>
             <Col xs={24} md={24} lg={8}>
               <Form.Item
-                label="Address"
+                label="Хаяг"
                 name="address"
                 required
                 rules={[{ required: true }]}
@@ -147,11 +147,11 @@ const Profile = () => {
               </Form.Item>
             </Col>
           </Row>
-          <h4>Professional Details :</h4>
+          <h4>Ажлын мэдээлэл :</h4>
           <Row gutter={20}>
             <Col xs={24} md={24} lg={8}>
               <Form.Item
-                label="Specialization"
+                label="Мэргэжил"
                 name="specialization"
                 required
                 rules={[{ required: true }]}
@@ -161,7 +161,7 @@ const Profile = () => {
             </Col>
             <Col xs={24} md={24} lg={8}>
               <Form.Item
-                label="Experience"
+                label="Туршлага"
                 name="experience"
                 required
                 rules={[{ required: true }]}
@@ -171,7 +171,7 @@ const Profile = () => {
             </Col>
             <Col xs={24} md={24} lg={8}>
               <Form.Item
-                label="Fees Per Cunsaltation"
+                label="Нэг удаагийн үнэ"
                 name="feesPerCunsaltation"
                 required
                 rules={[{ required: true }]}
@@ -180,7 +180,7 @@ const Profile = () => {
               </Form.Item>
             </Col>
             <Col xs={24} md={24} lg={8}>
-              <Form.Item label="Timings" name="timings" required>
+              <Form.Item label="Ажлын цаг" name="timings" required>
                 <TimePicker.RangePicker format="HH:mm" />
               </Form.Item>
             </Col>

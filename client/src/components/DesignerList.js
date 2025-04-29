@@ -11,20 +11,20 @@ const DesignerList = ({ designer }) => {
         onClick={() => navigate(`/designer/book-appointment/${designer._id}`)}
       >
         <div className="card-header">
-          Dr. {designer.firstName} {designer.lastName}
+          Дизайнер:  {designer.firstName} {designer.lastName}
         </div>
         <div className="card-body">
           <p>
-            <b>Specialization</b> {designer.specialization}
+            <b>Мэргэжил</b> {designer.specialization}
           </p>
           <p>
-            <b>Experience</b> {designer.experience}
+            <b>Туршлага</b> {designer.experience}
           </p>
           <p>
-            <b>Fees Per Cunsaltation</b> {designer.feesPerCunsaltation}
+            <b>Нэг удаагийн үнэ</b> {designer.feesPerCunsaltation}
           </p>
           <p>
-            <b>Timings</b> {designer.timings[0]} - {designer.timings[1]}
+            <b>Ажлын цаг</b> {designer.timings[0]} - {designer.timings[1]}
           </p>
         </div>
       </div>

@@ -57,7 +57,7 @@ const Designers = () => {
       ),
     },
     {
-      title: "Status",
+      title: "Захиалгын төлөв",
       dataIndex: "status",
     },
     {
@@ -65,7 +65,7 @@ const Designers = () => {
       dataIndex: "phone",
     },
     {
-      title: "Actions",
+      title: "Үйлдэл",
       dataIndex: "actions",
       render: (text, record) => (
         <div className="d-flex">
@@ -74,10 +74,10 @@ const Designers = () => {
               className="btn btn-success"
               onClick={() => handleAccountStatus(record, "approved")}
             >
-              Approve
+              Баталгаажуулах
             </button>
           ) : (
-            <button className="btn btn-danger">Reject</button>
+            <button className="btn btn-danger">Татгалзах</button>
           )}
         </div>
       ),

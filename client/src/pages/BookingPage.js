@@ -65,7 +65,7 @@ const BookingPage = () => {
     try {
       setIsAvailable(true);
       if (!date && !time) {
-        return alert("Date & Time Required");
+        return alert("Захиалгын цаг Required");
       }
       dispatch(showLoading());
       const res = await axios.post(
@@ -100,16 +100,16 @@ const BookingPage = () => {
   }, []);
   return (
     <Layout>
-      <h3>Booking Page</h3>
+      <h3>Захиалгын хуудас</h3>
       <div className="container m-2">
         {designers && (
           <div>
             <h4>
-              Dr.{designers.firstName} {designers.lastName}
+              Дизайнер: {designers.firstName} {designers.lastName}
             </h4>
-            <h4>Fees : {designers.feesPerCunsaltation}</h4>
+            <h4>Үнэ : {designers.feesPerCunsaltation}</h4>
             <h4>
-              Timings : {designers.timings && designers.timings[0]} -{" "}
+              Ажлын цаг : {designers.timings && designers.timings[0]} -{" "}
               {designers.timings && designers.timings[1]}{" "}
             </h4>
             <div className="d-flex flex-column w-50">

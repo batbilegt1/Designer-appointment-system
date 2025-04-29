@@ -51,11 +51,11 @@ const DesignerAppointments = () => {
 
   const columns = [
     {
-      title: "ID",
+      title: "Дугаар",
       dataIndex: "_id",
     },
     {
-      title: "Date & Time",
+      title: "Захиалгын цаг",
       dataIndex: "date",
       render: (text, record) => (
         <span>
@@ -65,11 +65,11 @@ const DesignerAppointments = () => {
       ),
     },
     {
-      title: "Status",
+      title: "Захиалгын төлөв",
       dataIndex: "status",
     },
     {
-      title: "Actions",
+      title: "Үйлдэл",
       dataIndex: "actions",
       render: (text, record) => (
         <div className="d-flex">
@@ -79,13 +79,13 @@ const DesignerAppointments = () => {
                 className="btn btn-success"
                 onClick={() => handleStatus(record, "approved")}
               >
-                Approved
+                Баталгаажуулах
               </button>
               <button
                 className="btn btn-danger ms-2"
                 onClick={() => handleStatus(record, "reject")}
               >
-                Reject
+                Татгалзах
               </button>
             </div>
           )}
@@ -95,7 +95,7 @@ const DesignerAppointments = () => {
   ];
   return (
     <Layout>
-      <h1>Appoinmtnets Lists</h1>
+      <h1>Захиалгын жагсаалт</h1>
       <Table columns={columns} dataSource={appointments} />
     </Layout>
   );

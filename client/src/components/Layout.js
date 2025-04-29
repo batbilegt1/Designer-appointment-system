@@ -19,18 +19,18 @@ const Layout = ({ children }) => {
   // =========== designer menu ===============
   const designerMenu = [
     {
-      name: "Home",
+      name: "Нүүр хуудас",
       path: "/",
       icon: "fa-solid fa-house",
     },
     {
-      name: "Appointments",
+      name: "Захиалгууд",
       path: "/designer-appointments",
       icon: "fa-solid fa-list",
     },
 
     {
-      name: "Profile",
+      name: "Профайл",
       path: `/designer/profile/${user?._id}`,
       icon: "fa-solid fa-user",
     },
@@ -49,7 +49,7 @@ const Layout = ({ children }) => {
         <div className="layout">
           <div className="sidebar">
             <div className="logo">
-              <h6 className="text-light">DOC APP</h6>
+              <h6 className="text-light">Үсчин, гоо сайхны салоны цаг захиалгын систем</h6>
               <hr />
             </div>
             <div className="menu">
@@ -66,7 +66,7 @@ const Layout = ({ children }) => {
               })}
               <div className={`menu-item `} onClick={handleLogout}>
                 <i className="fa-solid fa-right-from-bracket"></i>
-                <Link to="/login">Logout</Link>
+                <Link to="/login">Гарах</Link>
               </div>
             </div>
           </div>

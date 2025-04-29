@@ -30,7 +30,7 @@ const HomePage = () => {
   }, []);
   return (
     <Layout>
-      <h1 className="text-center">Home Page</h1>
+      <h1 className="text-center">Боломжит дизайнерууд </h1>
       <Row>
         {designers && designers.map((designer) => <DesignerList designer={designer} />)}
       </Row>

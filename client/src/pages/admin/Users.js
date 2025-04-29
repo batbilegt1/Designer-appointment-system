@@ -32,7 +32,7 @@ const Users = () => {
       dataIndex: "name",
     },
     {
-      title: "Email",
+      title: "И-мэйл хаяг",
       dataIndex: "email",
     },
     {
@@ -41,7 +41,7 @@ const Users = () => {
       render: (text, record) => <span>{record.isDesigner ? "Yes" : "No"}</span>,
     },
     {
-      title: "Actions",
+      title: "Үйлдэл",
       dataIndex: "actions",
       render: (text, record) => (
         <div className="d-flex">

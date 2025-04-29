@@ -1,18 +1,18 @@
 export const userMenu = [
   {
-    name: "Home",
+    name: "Нүүр хуудас",
     path: "/",
     icon: "fa-solid fa-house",
   },
   {
-    name: "Appointments",
+    name: "Захиалгууд",
     path: "/appointments",
     icon: "fa-solid fa-list",
   },
   {
-    name: "Apply Designer",
+    name: "Дизайнер болох",
     path: "/apply-designer",
-    icon: "fa-solid fa-user-designer",
+    icon: "fa-solid fa-scissors",
   },
   // {
   //   name: "Profile",
@@ -24,18 +24,18 @@ export const userMenu = [
 // admin menu
 export const adminMenu = [
   {
-    name: "Home",
+    name: "Нүүр хуудас",
     path: "/",
     icon: "fa-solid fa-house",
   },
 
   {
-    name: "Designers",
+    name: "Дизайнерууд",
     path: "/admin/designers",
-    icon: "fa-solid fa-user-designer",
+    icon: "fa-solid fa-scissors",
   },
   {
-    name: "Users",
+    name: "Хэрэглэгчид",
     path: "/admin/users",
     icon: "fa-solid fa-user",
   },

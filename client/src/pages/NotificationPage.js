@@ -65,12 +65,12 @@ const NotificationPage = () => {
   };
   return (
     <Layout>
-      <h4 className="p-3 text-center">Notification Page</h4>
+      <h4 className="p-3 text-center">Мэдэгдлүүд</h4>
       <Tabs>
-        <Tabs.TabPane tab="unRead" key={0}>
+        <Tabs.TabPane tab="Уншаагүй" key={0}>
           <div className="d-flex justify-content-end">
             <h4 className="p-2" onClick={handleMarkAllRead}>
-              Mark All Read
+              Бүгдийг уншсан болгох
             </h4>
           </div>
           {user?.notifcation.map((notificationMgs) => (
@@ -84,7 +84,7 @@ const NotificationPage = () => {
             </div>
           ))}
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Read" key={1}>
+        <Tabs.TabPane tab="Уншсан" key={1}>
           <div className="d-flex justify-content-end">
             <h4
               className="p-2 text-primary"

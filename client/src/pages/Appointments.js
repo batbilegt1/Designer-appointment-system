@@ -28,7 +28,7 @@ const Appointments = () => {
 
   const columns = [
     {
-      title: "ID",
+      title: "Дугаар",
       dataIndex: "_id",
     },
     // {
@@ -46,7 +46,7 @@ const Appointments = () => {
     //   render: (text, record) => <span>{record.designerInfo.phone}</span>,
     // },
     {
-      title: "Date & Time",
+      title: "Захиалгын цаг",
       dataIndex: "date",
       render: (text, record) => (
         <span>
@@ -56,14 +56,14 @@ const Appointments = () => {
       ),
     },
     {
-      title: "Status",
+      title: "Захиалгын төлөв",
       dataIndex: "status",
     },
   ];
 
   return (
     <Layout>
-      <h1>Appoinmtnets Lists</h1>
+      <h1>Захиалгын жагсаалт</h1>
       <Table columns={columns} dataSource={appointments} />
     </Layout>
   );
