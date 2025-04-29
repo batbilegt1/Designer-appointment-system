@@ -58,6 +58,17 @@ const Appointments = () => {
     {
       title: "Захиалгын төлөв",
       dataIndex: "status",
+      render: (text, record) => (
+        <span>
+          {record.status === "approved"
+            ? "Баталгаажсан"
+            : record.status === "pending"
+            ? "Хүлээгдэж байгаа"
+            : record.status === "reject"
+            ? "Татгалзсан"
+            : ""}
+        </span>
+      ),
     },
   ];
 

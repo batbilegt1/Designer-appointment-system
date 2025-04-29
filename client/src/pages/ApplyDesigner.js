@@ -46,7 +46,7 @@ const ApplyDesigner = () => {
   };
   return (
     <Layout>
-      <h1 className="text-center">Apply Designer</h1>
+      <h1 className="text-center">Ажлын анкет</h1>
       <Form layout="vertical" onFinish={handleFinish} className="m-3">
         <h4 className="">Хувийн мэдээлэл : </h4>
         <Row gutter={20}>

@@ -28,7 +28,7 @@ const Users = () => {
   // antD table col
   const columns = [
     {
-      title: "Name",
+      title: "Нэр",
       dataIndex: "name",
     },
     {
@@ -36,16 +36,16 @@ const Users = () => {
       dataIndex: "email",
     },
     {
-      title: "Designer",
+      title: "Дизайнер",
       dataIndex: "isDesigner",
-      render: (text, record) => <span>{record.isDesigner ? "Yes" : "No"}</span>,
+      render: (text, record) => <span>{record.isDesigner ? "Тийм" : "Үгүй"}</span>,
     },
     {
       title: "Үйлдэл",
       dataIndex: "actions",
       render: (text, record) => (
         <div className="d-flex">
-          <button className="btn btn-danger">Block</button>
+          <button className="btn btn-danger">Устгах</button>
         </div>
       ),
     },
@@ -53,7 +53,7 @@ const Users = () => {
 
   return (
     <Layout>
-      <h1 className="text-center m-2">Users List</h1>
+      <h1 className="text-center m-2">Хэрэглэгчдийн жагсаалт</h1>
       <Table columns={columns} dataSource={users} />
     </Layout>
   );

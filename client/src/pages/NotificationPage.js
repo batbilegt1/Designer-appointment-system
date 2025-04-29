@@ -91,7 +91,7 @@ const NotificationPage = () => {
               style={{ cursor: "pointer" }}
               onClick={handleDeleteAllRead}
             >
-              Delete All Read
+              Уншсан мэдэгдлүүдийг устгах
             </h4>
           </div>
           {user?.seennotification.map((notificationMgs) => (

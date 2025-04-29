@@ -48,7 +48,7 @@ const Designers = () => {
 
   const columns = [
     {
-      title: "Name",
+      title: "Нэр",
       dataIndex: "name",
       render: (text, record) => (
         <span>
@@ -57,11 +57,22 @@ const Designers = () => {
       ),
     },
     {
-      title: "Захиалгын төлөв",
+      title: "Төлөв",
       dataIndex: "status",
+      render: (text, record) => (
+        <span>
+          {record.status === "approved"
+            ? "Баталгаажсан"
+            : record.status === "pending"
+            ? "Хүлээгдэж байгаа"
+            : record.status === "refused"
+            ? "Татгалзсан"
+            : ""}
+        </span>
+      ),
     },
     {
-      title: "phone",
+      title: "Утасны дугаар",
       dataIndex: "phone",
     },
     {
@@ -77,7 +88,7 @@ const Designers = () => {
               Баталгаажуулах
             </button>
           ) : (
-            <button className="btn btn-danger">Татгалзах</button>
+            <button className="btn btn-danger">Устгах</button>
           )}
         </div>
       ),
@@ -86,7 +97,7 @@ const Designers = () => {
 
   return (
     <Layout>
-      <h1 className="text-center m-3">All Designers</h1>
+      <h1 className="text-center m-3">Дизайнеруудын жагсаалт</h1>
       <Table columns={columns} dataSource={designers} />
     </Layout>
   );
