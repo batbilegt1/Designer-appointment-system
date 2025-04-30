@@ -134,11 +134,11 @@ const BookingPage = () => {
                 className="btn btn-primary mt-2"
                 onClick={handleAvailability}
               >
-                Check Availability
+                Цаг шалгах
               </button>
 
               <button className="btn btn-dark mt-2" onClick={handleBooking}>
-                Book Now
+                Захиалах
               </button>
             </div>
           </div>

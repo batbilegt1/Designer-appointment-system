@@ -1,12 +1,14 @@
 const appointmentModel = require("../models/appointmentModel");
 const designerModel = require("../models/designerModel");
 const userModel = require("../models/userModels");
+
+// Загвар зохион бүтээгчийн мэдээлэл авах
 const getDesignerInfoController = async (req, res) => {
   try {
     const designer = await designerModel.findOne({ userId: req.body.userId });
     res.status(200).send({
       success: true,
-      message: "designer data fetch success",
+      message: "Загвар зохион бүтээгчийн мэдээлэл амжилттай авлаа",
       data: designer,
     });
   } catch (error) {
@@ -14,12 +16,12 @@ const getDesignerInfoController = async (req, res) => {
     res.status(500).send({
       success: false,
       error,
-      message: "Error in Fetching Designer Details",
+      message: "Загвар зохион бүтээгчийн мэдээлэл авахад алдаа гарлаа",
     });
   }
 };
 
-// update doc profile
+// Загвар зохион бүтээгчийн профайлыг шинэчлэх
 const updateProfileController = async (req, res) => {
   try {
     const designer = await designerModel.findOneAndUpdate(
@@ -28,26 +30,26 @@ const updateProfileController = async (req, res) => {
     );
     res.status(201).send({
       success: true,
-      message: "Designer Profile Updated",
+      message: "Загвар зохион бүтээгчийн профайл шинэчлэгдлээ",
       data: designer,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Designer Profile Update issue",
+      message: "Профайл шинэчлэхэд алдаа гарлаа",
       error,
     });
   }
 };
 
-//get single docotor
+// Нэг загвар зохион бүтээгчийн мэдээлэл авах
 const getDesignerByIdController = async (req, res) => {
   try {
     const designer = await designerModel.findOne({ _id: req.body.designerId });
     res.status(200).send({
       success: true,
-      message: "Sigle Doc Info Fetched",
+      message: "Нэг загвар зохион бүтээгчийн мэдээллийг амжилттай авлаа",
       data: designer,
     });
   } catch (error) {
@@ -55,11 +57,12 @@ const getDesignerByIdController = async (req, res) => {
     res.status(500).send({
       success: false,
       error,
-      message: "Erro in Single docot info",
+      message: "Нэг загвар зохион бүтээгчийн мэдээллийг авахад алдаа гарлаа",
     });
   }
 };
 
+// Загвар зохион бүтээгчийн бүх цаг захиалгуудыг авах
 const designerAppointmentsController = async (req, res) => {
   try {
     const designer = await designerModel.findOne({ userId: req.body.userId });
@@ -68,7 +71,7 @@ const designerAppointmentsController = async (req, res) => {
     });
     res.status(200).send({
       success: true,
-      message: "Designer Appointments fetch Successfully",
+      message: "Загвар зохион бүтээгчийн цаг захиалгуудыг амжилттай авлаа",
       data: appointments,
     });
   } catch (error) {
@@ -76,11 +79,12 @@ const designerAppointmentsController = async (req, res) => {
     res.status(500).send({
       success: false,
       error,
-      message: "Error in Doc Appointments",
+      message: "Цаг захиалгуудыг авах үед алдаа гарлаа",
     });
   }
 };
 
+// Цаг захиалгын төлөв шинэчлэх
 const updateStatusController = async (req, res) => {
   try {
     const { appointmentsId, status } = req.body;
@@ -92,20 +96,20 @@ const updateStatusController = async (req, res) => {
     const notifcation = user.notifcation;
     notifcation.push({
       type: "status-updated",
-      message: `your appointment has been updated ${status}`,
+      message: `Таны цаг захиалгын төлөв "${status}" болгон шинэчлэгдлээ`,
       onCLickPath: "/designer-appointments",
     });
     await user.save();
     res.status(200).send({
       success: true,
-      message: "Appointment Status Updated",
+      message: "Цаг захиалгын төлөв амжилттай шинэчлэгдлээ",
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
       error,
-      message: "Error In Update Status",
+      message: "Цаг захиалгын төлөв шинэчлэхэд алдаа гарлаа",
     });
   }
 };

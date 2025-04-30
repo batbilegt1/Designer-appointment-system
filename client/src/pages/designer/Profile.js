@@ -98,7 +98,7 @@ const Profile = () => {
                 required
                 rules={[{ required: true }]}
               >
-                <Input type="text" placeholder="your first name" />
+                <Input type="text" placeholder="Таны овог" />
               </Form.Item>
             </Col>
             <Col xs={24} md={24} lg={8}>
@@ -108,7 +108,7 @@ const Profile = () => {
                 required
                 rules={[{ required: true }]}
               >
-                <Input type="text" placeholder="your last name" />
+                <Input type="text" placeholder="Таны нэр" />
               </Form.Item>
             </Col>
             <Col xs={24} md={24} lg={8}>
@@ -118,7 +118,7 @@ const Profile = () => {
                 required
                 rules={[{ required: true }]}
               >
-                <Input type="text" placeholder="your contact no" />
+                <Input type="text" placeholder="Таны утасны дугаар" />
               </Form.Item>
             </Col>
             <Col xs={24} md={24} lg={8}>
@@ -128,12 +128,12 @@ const Profile = () => {
                 required
                 rules={[{ required: true }]}
               >
-                <Input type="email" placeholder="your email address" />
+                <Input type="email" placeholder="Таны и-мэйл хаяг" />
               </Form.Item>
             </Col>
             <Col xs={24} md={24} lg={8}>
               <Form.Item label="Сошиал хаяг" name="website">
-                <Input type="text" placeholder="your website" />
+                <Input type="text" placeholder="Таны cошиал хаяг" />
               </Form.Item>
             </Col>
             <Col xs={24} md={24} lg={8}>
@@ -143,7 +143,7 @@ const Profile = () => {
                 required
                 rules={[{ required: true }]}
               >
-                <Input type="text" placeholder="your clinic address" />
+                <Input type="text" placeholder="Таны хаяг" />
               </Form.Item>
             </Col>
           </Row>
@@ -156,7 +156,7 @@ const Profile = () => {
                 required
                 rules={[{ required: true }]}
               >
-                <Input type="text" placeholder="your specialization" />
+                <Input type="text" placeholder="Таны мэргэжил" />
               </Form.Item>
             </Col>
             <Col xs={24} md={24} lg={8}>
@@ -166,7 +166,7 @@ const Profile = () => {
                 required
                 rules={[{ required: true }]}
               >
-                <Input type="text" placeholder="your experience" />
+                <Input type="text" placeholder="Таны туршлага" />
               </Form.Item>
             </Col>
             <Col xs={24} md={24} lg={8}>
@@ -176,7 +176,7 @@ const Profile = () => {
                 required
                 rules={[{ required: true }]}
               >
-                <Input type="text" placeholder="your contact no" />
+                <Input type="text" placeholder="Таны санал болгох нэг удаагийн үнэ" />
               </Form.Item>
             </Col>
             <Col xs={24} md={24} lg={8}>
@@ -187,7 +187,7 @@ const Profile = () => {
             <Col xs={24} md={24} lg={8}></Col>
             <Col xs={24} md={24} lg={8}>
               <button className="btn btn-primary form-btn" type="submit">
-                Update
+                Хадгалах
               </button>
             </Col>
           </Row>

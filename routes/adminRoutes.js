@@ -3,6 +3,7 @@ const {
   getAllUsersController,
   getAllDesignersController,
   changeAccountStatusController,
+  deleteUserController,
 } = require("../controllers/adminCtrl");
 const authMiddleware = require("../middlewares/authMiddleware");
 
@@ -13,6 +14,9 @@ router.get("/getAllUsers", authMiddleware, getAllUsersController);
 
 //GET METHOD || DesignerS
 router.get("/getAllDesigners", authMiddleware, getAllDesignersController);
+
+//DELETE USER || USERS
+router.post("/deleteUser", authMiddleware, deleteUserController);
 
 //POST ACCOUNT STATUS
 router.post(

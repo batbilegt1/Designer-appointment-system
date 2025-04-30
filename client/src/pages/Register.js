@@ -15,7 +15,7 @@ const Register = () => {
       const res = await axios.post("/api/v1/user/register", values);
       dispatch(hideLoading());
       if (res.data.success) {
-        message.success("Register Successfully!");
+        message.success("Амжилттай бүртгэгдлээ!");
         navigate("/login");
       } else {
         message.error(res.data.message);
@@ -23,7 +23,7 @@ const Register = () => {
     } catch (error) {
       dispatch(hideLoading());
       console.log(error);
-      message.error("Something Went Wrong");
+      message.error("Бүртгэхэд алдаа гарлаа!");
     }
   };
   return (

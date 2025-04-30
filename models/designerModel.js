@@ -7,38 +7,38 @@ const designerSchema = new mongoose.Schema(
     },
     firstName: {
       type: String,
-      required: [true, "first name is required"],
+      required: [true, "Нэр оруулах шаардлагатай"],
     },
     lastName: {
       type: String,
-      required: [true, "last name is required"],
+      required: [true, "Овог оруулах шаардлагатай"],
     },
     phone: {
       type: String,
-      required: [true, "phone no is required"],
+      required: [true, "Утасны дугаар шаардлагатай"],
     },
     email: {
       type: String,
-      required: [true, "email is required"],
+      required: [true, "И-мэйл оруулах шаардлагатай"],
     },
     website: {
       type: String,
     },
     address: {
       type: String,
-      required: [true, "address is required"],
+      required: [true, "Хаяг оруулах шаардлагатай"],
     },
     specialization: {
       type: String,
-      required: [true, "specialization is require"],
+      required: [true, "Мэргэшил заавал шаардлагатай"],
     },
     experience: {
       type: String,
-      required: [true, "experience is required"],
+      required: [true, "Туршлага заавал оруулах шаардлагатай"],
     },
     feesPerCunsaltation: {
       type: Number,
-      required: [true, "fee is required"],
+      required: [true, "Үнийн мэдээлэл заавал шаардлагатай"],
     },
     status: {
       type: String,
@@ -46,7 +46,7 @@ const designerSchema = new mongoose.Schema(
     },
     timings: {
       type: Object,
-      required: [true, "wrok timing is required"],
+      required: [true, "Ажлын цаг оруулах шаардлагатай"],
     },
   },
   { timestamps: true }

@@ -4,14 +4,13 @@ const jwt = require("jsonwebtoken");
 const designerModel = require("../models/designerModel");
 const appointmentModel = require("../models/appointmentModel");
 const moment = require("moment");
-//register callback
+
+// Бүртгэх контроллер
 const registerController = async (req, res) => {
   try {
     const exisitingUser = await userModel.findOne({ email: req.body.email });
     if (exisitingUser) {
-      return res
-        .status(200)
-        .send({ message: "User Already Exist", success: false });
+      return res.status(200).send({ message: "Хэрэглэгч бүртгэлтэй байна", success: false });
     }
     const password = req.body.password;
     const salt = await bcrypt.genSalt(10);
@@ -19,67 +18,49 @@ const registerController = async (req, res) => {
     req.body.password = hashedPassword;
     const newUser = new userModel(req.body);
     await newUser.save();
-    res.status(201).send({ message: "Register Sucessfully", success: true });
+    res.status(201).send({ message: "Амжилттай бүртгэгдлээ", success: true });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
-      success: false,
-      message: `Register Controller ${error.message}`,
-    });
+    res.status(500).send({ success: false, message: `Бүртгэлийн алдаа: ${error.message}` });
   }
 };
 
-// login callback
+// Нэвтрэх контроллер
 const loginController = async (req, res) => {
   try {
     const user = await userModel.findOne({ email: req.body.email });
     if (!user) {
-      return res
-        .status(200)
-        .send({ message: "user not found", success: false });
+      return res.status(200).send({ message: "Хэрэглэгч олдсонгүй", success: false });
     }
     const isMatch = await bcrypt.compare(req.body.password, user.password);
     if (!isMatch) {
-      return res
-        .status(200)
-        .send({ message: "Invlid EMail or Password", success: false });
+      return res.status(200).send({ message: "Имэйл эсвэл нууц үг буруу байна", success: false });
     }
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
-    });
-    res.status(200).send({ message: "Login Success", success: true, token });
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+    res.status(200).send({ message: "Амжилттай нэвтэрлээ", success: true, token });
   } catch (error) {
     console.log(error);
-    res.status(500).send({ message: `Error in Login CTRL ${error.message}` });
+    res.status(500).send({ message: `Нэвтрэхэд алдаа гарлаа: ${error.message}` });
   }
 };
 
+// JWT хэрэглэгчийн баталгаажуулалт
 const authController = async (req, res) => {
   try {
     const user = await userModel.findById({ _id: req.body.userId });
     user.password = undefined;
     if (!user) {
-      return res.status(200).send({
-        message: "user not found",
-        success: false,
-      });
+      return res.status(200).send({ message: "Хэрэглэгч олдсонгүй", success: false });
     } else {
-      res.status(200).send({
-        success: true,
-        data: user,
-      });
+      res.status(200).send({ success: true, data: user });
     }
   } catch (error) {
     console.log(error);
-    res.status(500).send({
-      message: "auth error",
-      success: false,
-      error,
-    });
+    res.status(500).send({ message: "Баталгаажуулалтын алдаа", success: false, error });
   }
 };
 
-// APpply Designer CTRL
+// Дизайнер хүсэлт илгээх
 const applyDesignerController = async (req, res) => {
   try {
     const newDesigner = await designerModel({ ...req.body, status: "pending" });
@@ -88,7 +69,7 @@ const applyDesignerController = async (req, res) => {
     const notifcation = adminUser.notifcation;
     notifcation.push({
       type: "apply-designer-request",
-      message: `${newDesigner.firstName} ${newDesigner.lastName} Has Applied For A Designer Account`,
+      message: `${newDesigner.firstName} ${newDesigner.lastName} дизайнер болох хүсэлт илгээсэн`,
       data: {
         designerId: newDesigner._id,
         name: newDesigner.firstName + " " + newDesigner.lastName,
@@ -96,21 +77,14 @@ const applyDesignerController = async (req, res) => {
       },
     });
     await userModel.findByIdAndUpdate(adminUser._id, { notifcation });
-    res.status(201).send({
-      success: true,
-      message: "Designer Account Applied SUccessfully",
-    });
+    res.status(201).send({ success: true, message: "Дизайнер хүсэлт амжилттай илгээгдлээ" });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
-      success: false,
-      error,
-      message: "Error WHile Applying For Doctotr",
-    });
+    res.status(500).send({ success: false, error, message: "Дизайнер хүсэлт илгээхэд алдаа гарлаа" });
   }
 };
 
-//notification ctrl
+// Мэдэгдлийг бүгдийг уншсан болгох
 const getAllNotificationController = async (req, res) => {
   try {
     const user = await userModel.findOne({ _id: req.body.userId });
@@ -122,20 +96,16 @@ const getAllNotificationController = async (req, res) => {
     const updatedUser = await user.save();
     res.status(200).send({
       success: true,
-      message: "all notification marked as read",
+      message: "Бүх мэдэгдлийг уншсан гэж тэмдэглэлээ",
       data: updatedUser,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
-      message: "Error in notification",
-      success: false,
-      error,
-    });
+    res.status(500).send({ message: "Мэдэгдэл авахад алдаа гарлаа", success: false, error });
   }
 };
 
-// delete notifications
+// Мэдэгдлийг устгах
 const deleteAllNotificationController = async (req, res) => {
   try {
     const user = await userModel.findOne({ _id: req.body.userId });
@@ -145,26 +115,26 @@ const deleteAllNotificationController = async (req, res) => {
     updatedUser.password = undefined;
     res.status(200).send({
       success: true,
-      message: "Notifications Deleted successfully",
+      message: "Мэдэгдлүүд амжилттай устлаа",
       data: updatedUser,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "unable to delete all notifications",
+      message: "Мэдэгдлийг устгахад алдаа гарлаа",
       error,
     });
   }
 };
 
-//GET ALL DOC
+// Батлагдсан бүх дизайнеруудыг авах
 const getAllDesignersController = async (req, res) => {
   try {
     const designers = await designerModel.find({ status: "approved" });
     res.status(200).send({
       success: true,
-      message: "Docots Lists Fetched Successfully",
+      message: "Дизайнеруудын жагсаалт амжилттай",
       data: designers,
     });
   } catch (error) {
@@ -172,12 +142,12 @@ const getAllDesignersController = async (req, res) => {
     res.status(500).send({
       success: false,
       error,
-      message: "Errro WHile Fetching DOcotr",
+      message: "Дизайнеруудыг авахад алдаа гарлаа",
     });
   }
 };
 
-//BOOK APPOINTMENT
+// Цаг захиалах
 const bookeAppointmnetController = async (req, res) => {
   try {
     req.body.date = moment(req.body.date, "DD-MM-YYYY").toISOString();
@@ -188,31 +158,22 @@ const bookeAppointmnetController = async (req, res) => {
     const user = await userModel.findOne({ _id: req.body.designerInfo.userId });
     user.notifcation.push({
       type: "New-appointment-request",
-      message: `A nEw Appointment Request from ${req.body.userInfo.name}`,
+      message: `${req.body.userInfo.name} шинэ цаг захиалсан`,
       onCLickPath: "/user/appointments",
     });
     await user.save();
-    res.status(200).send({
-      success: true,
-      message: "Appointment Book succesfully",
-    });
+    res.status(200).send({ success: true, message: "Амжилттай цаг захиаллаа!" });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
-      success: false,
-      error,
-      message: "Error While Booking Appointment",
-    });
+    res.status(500).send({ success: false, error, message: "Цаг захиалахад алдаа гарлаа!" });
   }
 };
 
-// booking bookingAvailabilityController
+// Цаг авах боломжтой эсэхийг шалгах
 const bookingAvailabilityController = async (req, res) => {
   try {
     const date = moment(req.body.date, "DD-MM-YY").toISOString();
-    const fromTime = moment(req.body.time, "HH:mm")
-      .subtract(1, "hours")
-      .toISOString();
+    const fromTime = moment(req.body.time, "HH:mm").subtract(1, "hours").toISOString();
     const toTime = moment(req.body.time, "HH:mm").add(1, "hours").toISOString();
     const designerId = req.body.designerId;
     const appointments = await appointmentModel.find({
@@ -225,42 +186,33 @@ const bookingAvailabilityController = async (req, res) => {
     });
     if (appointments.length > 0) {
       return res.status(200).send({
-        message: "Appointments not Availibale at this time",
+        message: "Энэ цагт захиалга хийх боломжгүй",
         success: true,
       });
     } else {
       return res.status(200).send({
         success: true,
-        message: "Appointments available",
+        message: "Цаг авах боломжтой байна",
       });
     }
   } catch (error) {
     console.log(error);
-    res.status(500).send({
-      success: false,
-      error,
-      message: "Error In Booking",
-    });
+    res.status(500).send({ success: false, error, message: "Цаг шалгахад алдаа гарлаа" });
   }
 };
 
+// Хэрэглэгчийн бүх цагийн захиалга авах
 const userAppointmentsController = async (req, res) => {
   try {
-    const appointments = await appointmentModel.find({
-      userId: req.body.userId,
-    });
+    const appointments = await appointmentModel.find({ userId: req.body.userId });
     res.status(200).send({
       success: true,
-      message: "Users Appointments Fetch SUccessfully",
+      message: "Хэрэглэгчийн цаг захиалгууд амжилттай",
       data: appointments,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
-      success: false,
-      error,
-      message: "Error In User Appointments",
-    });
+    res.status(500).send({ success: false, error, message: "Цагийн мэдээллийг авахад алдаа гарлаа" });
   }
 };
 

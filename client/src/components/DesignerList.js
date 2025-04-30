@@ -15,16 +15,16 @@ const DesignerList = ({ designer }) => {
         </div>
         <div className="card-body">
           <p>
-            <b>Мэргэжил</b> {designer.specialization}
+            <b>Мэргэжил : </b> {designer.specialization}
           </p>
           <p>
-            <b>Туршлага</b> {designer.experience}
+            <b>Туршлага : </b> {designer.experience}
           </p>
           <p>
-            <b>Нэг удаагийн үнэ</b> {designer.feesPerCunsaltation}
+            <b>Нэг удаагийн үнэ : </b> {designer.feesPerCunsaltation}
           </p>
           <p>
-            <b>Ажлын цаг</b> {designer.timings[0]} - {designer.timings[1]}
+            <b>Ажлын цаг : </b> {designer.timings[0]} - {designer.timings[1]}
           </p>
         </div>
       </div>

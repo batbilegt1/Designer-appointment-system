@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
   // logout funtion
   const handleLogout = () => {
     localStorage.clear();
-    message.success("Logout Successfully");
+    message.success("Амжилттай гарлаа!");
     navigate("/login");
   };
 
@@ -82,7 +82,7 @@ const Layout = ({ children }) => {
                   <i class="fa-solid fa-bell"></i>
                 </Badge>
 
-                <Link to="/profile">{user?.name}</Link>
+                <Link>{user?.name}</Link>
               </div>
             </div>
             <div className="body">{children}</div>

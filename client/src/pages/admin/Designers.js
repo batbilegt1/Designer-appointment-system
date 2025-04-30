@@ -65,7 +65,7 @@ const Designers = () => {
             ? "Баталгаажсан"
             : record.status === "pending"
             ? "Хүлээгдэж байгаа"
-            : record.status === "refused"
+            : record.status === "reject"
             ? "Татгалзсан"
             : ""}
         </span>
@@ -81,15 +81,28 @@ const Designers = () => {
       render: (text, record) => (
         <div className="d-flex">
           {record.status === "pending" ? (
-            <button
-              className="btn btn-success"
-              onClick={() => handleAccountStatus(record, "approved")}
+            <div className="d-flex">
+              <button
+                className="btn btn-success"
+                onClick={() => handleAccountStatus(record, "approved")}
+              >
+                Баталгаажуулах
+              </button>
+              <button
+                className="btn btn-danger ms-2"
+                onClick={() => handleAccountStatus(record, "reject")}
+              >
+                Татгалзах
+              </button>
+            </div>
+          ) : record.status === "approved" ? (
+            <button 
+              className="btn btn-danger"
+              onClick={() => handleAccountStatus(record, "reject")}
             >
-              Баталгаажуулах
+              Цуцлах
             </button>
-          ) : (
-            <button className="btn btn-danger">Устгах</button>
-          )}
+          ) : <span></span>}
         </div>
       ),
     },

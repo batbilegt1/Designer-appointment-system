@@ -21,6 +21,25 @@ const Users = () => {
     }
   };
 
+  const deleteUser = async (userId) => {
+    try {
+      const res = await axios.post(
+        "/api/v1/admin/deleteUser",
+        { deleteUserId: userId },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      if (res.data.success) {
+        getUsers()
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getUsers();
   }, []);
@@ -45,7 +64,7 @@ const Users = () => {
       dataIndex: "actions",
       render: (text, record) => (
         <div className="d-flex">
-          <button className="btn btn-danger">Устгах</button>
+          <button className="btn btn-danger" onClick={() => deleteUser(record._id)}>Устгах</button>
         </div>
       ),
     },
