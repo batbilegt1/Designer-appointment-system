@@ -65,8 +65,9 @@ const BookingPage = () => {
     try {
       setIsAvailable(true);
       if (!date && !time) {
-        return alert("Захиалгын цаг Required");
+        return alert("Захиалгын цаг заавал оруулах ёстой!");
       }
+      console.log("TSag: "+ time)
       dispatch(showLoading());
       const res = await axios.post(
         "/api/v1/user/book-appointment",
@@ -126,16 +127,13 @@ const BookingPage = () => {
                 format="HH:mm"
                 className="mt-3"
                 onChange={(value) => {
-                  setTime(moment(value).format("HH:mm"));
+                  if (value) {
+                    setTime(value.format("HH:mm"));
+                  } else {
+                    setTime(null);
+                  }
                 }}
               />
-
-              <button
-                className="btn btn-primary mt-2"
-                onClick={handleAvailability}
-              >
-                Цаг шалгах
-              </button>
 
               <button className="btn btn-dark mt-2" onClick={handleBooking}>
                 Захиалах
