@@ -69,10 +69,19 @@ const designerAppointmentsController = async (req, res) => {
     const appointments = await appointmentModel.find({
       designerId: designer._id,
     });
+    const enrichedAppointments = await Promise.all(
+      appointments.map(async (appointment) => {
+        const user = await userModel.findById(appointment.userId);
+        return {
+          ...appointment._doc, // spread appointment document
+          user,             // attach designer object
+        };
+      })
+    );
     res.status(200).send({
       success: true,
       message: "Загвар зохион бүтээгчийн цаг захиалгуудыг амжилттай авлаа",
-      data: appointments,
+      data: enrichedAppointments,
     });
   } catch (error) {
     console.log(error);
