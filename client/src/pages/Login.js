@@ -39,10 +39,10 @@ const Login = () => {
         <h3 className="text-center">Нэвтрэх</h3>
 
         <Form.Item label="И-мэйл хаяг" name="email">
-          <Input type="email" required />
+          <Input type="email" required placeholder="И-мэйл хаягаа оруулна уу!"/>
         </Form.Item>
         <Form.Item label="Нууц үг" name="password">
-          <Input type="password" required />
+          <Input type="password" required  placeholder="Нууц үгээ оруулна уу!"/>
         </Form.Item>
         <Link to="/register" className="m-2">
           Бүртгүүлэх

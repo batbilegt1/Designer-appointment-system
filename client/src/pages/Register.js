@@ -36,13 +36,13 @@ const Register = () => {
         >
           <h3 className="text-center">Бүртгүүлэх</h3>
           <Form.Item label="Нэр" name="name">
-            <Input type="text" required />
+            <Input type="text" required placeholder="Нэрээ оруулна уу!"/>
           </Form.Item>
           <Form.Item label="И-мэйл хаяг" name="email">
-            <Input type="email" required />
+            <Input type="email" required placeholder="И-мэйл хаягаа оруулна уу!"/>
           </Form.Item>
           <Form.Item label="Нууц үг" name="password">
-            <Input type="password" required />
+            <Input type="password" required placeholder="Нууц үгээ оруулна уу!"/>
           </Form.Item>
           <Link to="/login" className="m-2">
             Нэвтрэх
