@@ -20,10 +20,12 @@ const ApplyDesigner = () => {
         {
           ...values,
           userId: user._id,
-          timings: [
-            moment(values.timings[0]).format("HH:mm"),
-            moment(values.timings[1]).format("HH:mm"),
-          ],
+          timings: Array.isArray(values.timings) && values.timings.length === 2
+          ? [
+              values.timings[0].format("HH:mm"),
+              values.timings[1].format("HH:mm"),
+            ]
+          : ["", ""], // or handle invalid case as needed
         },
         {
           headers: {

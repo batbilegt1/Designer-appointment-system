@@ -22,14 +22,40 @@ const Appointments = () => {
     }
   };
 
+  const deleteAppointment = async (appointmentId) => {
+    try {
+      const res = await axios.post(
+        "/api/v1/user/deleteAppointment",
+        { deleteAppointmentId: appointmentId },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      if (res.data.success) {
+        getAppointments()
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getAppointments();
   }, []);
 
   const columns = [
     {
-      title: "Дугаар",
+      title: "Дизайнер",
       dataIndex: "_id",
+      render: (text, record) => (
+        <span>
+          {record.designer
+            ? `${record.designer.firstName} ${record.designer.lastName}`
+            : 'Устсан дизайнер'}
+        </span>
+      ),
     },
     // {
     //   title: "Name",
@@ -68,6 +94,24 @@ const Appointments = () => {
             ? "Татгалзсан"
             : ""}
         </span>
+      ),
+    },
+    {
+      title: "Үйлдэл",
+      dataIndex: "actions",
+      render: (text, record) => (
+        <div className="d-flex">
+          {record.status === "pending" && (
+            <div className="d-flex">
+              <button
+                className="btn btn-danger"
+                onClick={() => deleteAppointment(record._id)}
+              >
+                Устгах
+              </button>
+            </div>
+          )}
+        </div>
       ),
     },
   ];

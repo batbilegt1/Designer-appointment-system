@@ -51,8 +51,15 @@ const DesignerAppointments = () => {
 
   const columns = [
     {
-      title: "Дугаар",
+      title: "Захиалагч",
       dataIndex: "_id",
+      render: (text, record) => (
+        <span>
+          {record.user
+            ? `${record.user.name}`
+            : 'Устсан захиалагч'}
+        </span>
+      ),
     },
     {
       title: "Захиалгын цаг",

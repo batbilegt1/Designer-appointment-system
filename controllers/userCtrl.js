@@ -205,14 +205,51 @@ const bookingAvailabilityController = async (req, res) => {
 const userAppointmentsController = async (req, res) => {
   try {
     const appointments = await appointmentModel.find({ userId: req.body.userId });
+    // Fetch designer data for each appointment
+    const enrichedAppointments = await Promise.all(
+      appointments.map(async (appointment) => {
+        const designer = await designerModel.findById(appointment.designerId);
+        return {
+          ...appointment._doc, // spread appointment document
+          designer,             // attach designer object
+        };
+      })
+    );
     res.status(200).send({
       success: true,
       message: "Хэрэглэгчийн цаг захиалгууд амжилттай",
-      data: appointments,
+      data: enrichedAppointments,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({ success: false, error, message: "Цагийн мэдээллийг авахад алдаа гарлаа" });
+  }
+};
+
+// Нэг захиалгийг устгах
+const deleteAppointmentController = async (req, res) => {
+  try {
+    const deletedAppointment = await appointmentModel.findByIdAndDelete(req.body.deleteAppointmentId);
+
+    if (!deletedAppointment) {
+      return res.status(404).send({
+        success: false,
+        message: "Ийм ID-тай захиалга олдсонгүй",
+      });
+    }
+
+    res.status(200).send({
+      success: true,
+      message: "Захиалгыг амжилттай устгалаа",
+      data: deletedAppointment,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Захиалгыг устгах үед алдаа гарлаа",
+    });
   }
 };
 
@@ -227,4 +264,5 @@ module.exports = {
   bookeAppointmnetController,
   bookingAvailabilityController,
   userAppointmentsController,
+  deleteAppointmentController,
 };
