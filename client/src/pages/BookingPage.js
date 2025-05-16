@@ -123,7 +123,7 @@ const BookingPage = () => {
                 }}
               />
               <TimePicker
-                aria-required={"true"}
+                aria-required="true"
                 format="HH:mm"
                 className="mt-3"
                 onChange={(value) => {
@@ -133,8 +133,21 @@ const BookingPage = () => {
                     setTime(null);
                   }
                 }}
-              />
+                disabledHours={() => {
+                  const start = designers.timings ? parseInt(designers.timings[0], 10) : 9;
+                  const end = designers.timings ? parseInt(designers.timings[1], 10) : 18;
 
+                  // Return hours to disable (0 to 23)
+                  const hours = Array.from({ length: 24 }, (_, i) => i);
+                  return hours.filter((hour) => hour < start || hour >= end);
+                }}
+              />
+              <button
+                className="btn btn-primary mt-2"
+                onClick={handleAvailability}
+              >
+                Цаг шалгах
+              </button>
               <button className="btn btn-dark mt-2" onClick={handleBooking}>
                 Захиалах
               </button>
