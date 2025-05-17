@@ -1,14 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import {  useSelector } from "react-redux";
 
 const DesignerList = ({ designer }) => {
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.user);
   return (
     <>
       <div
         className="card m-2"
         style={{ cursor: "pointer" }}
-        onClick={() => navigate(`/designer/book-appointment/${designer._id}`)}
+        onClick={() => (!user.isAdmin&&!user.isDesigner) && navigate(`/designer/book-appointment/${designer._id}`)}
       >
         <div className="card-header">
           Дизайнер:  {designer.firstName} {designer.lastName}
